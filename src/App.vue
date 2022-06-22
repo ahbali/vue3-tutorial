@@ -18,7 +18,11 @@ const text = reactive({
 })
 
 const titleClass = ref('title')
+const count = ref(0)
 
+function increment() {
+    count.value++
+}
 </script>
 
 <template>
@@ -26,6 +30,7 @@ const titleClass = ref('title')
     <h1>{{ message.split('').reverse().join('') }}</h1>
     <p>count is: {{ counter.count }}</p>
     <h1 :class="titleClass">make me red</h1>
+    <button @click="increment">count is: {{ count }}</button>
 </template>
 
 <style>

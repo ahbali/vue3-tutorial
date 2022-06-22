@@ -9,10 +9,19 @@ const counter = reactive({
 console.log(counter.count)
 counter.count++
 
+const message = ref("hello world")
+console.log(message.value)
+message.value = 'changed'
+
+const text = reactive({
+    message: 'hellooooo'
+})
 </script>
 
 <template>
-    <h1>Hello world</h1>
+    <h1>assignment: {{ text.message }}</h1>
+    <h1>{{ message.split('').reverse().join('') }}</h1>
+    <p>count is: {{ counter.count }}</p>
 </template>
 
 <style>

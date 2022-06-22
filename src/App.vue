@@ -16,13 +16,20 @@ message.value = 'changed'
 const text = reactive({
     message: 'hellooooo'
 })
+
+const titleClass = ref('title')
+
 </script>
 
 <template>
     <h1>assignment: {{ text.message }}</h1>
     <h1>{{ message.split('').reverse().join('') }}</h1>
     <p>count is: {{ counter.count }}</p>
+    <h1 :class="titleClass">make me red</h1>
 </template>
 
 <style>
+.title {
+    color: red;
+}
 </style>

@@ -34,7 +34,26 @@ const awesome = ref(true)
 function toggle() {
     awesome.value = !awesome.value
 }
+// part 7: List Rendering
+type Todo = {
+    id: number;
+    text: string;
+}
+let id = 0
+const newTodo = ref('')
+const todos = ref([
+    { id: id++, text: 'Learn HTML' },
+    { id: id++, text: 'Learn JavaScript' },
+    { id: id++, text: 'Learn Vue' }
+])
 
+function addTodo(e: Event) {
+    todos.value = [{ id: id++, text: newTodo.value }, ...todos.value]
+    newTodo.value = ''
+}
+function removeTodo(todo: Todo) {
+    todos.value = todos.value.filter(old => old.id !== todo.id)
+}
 </script>
 
 <template>
@@ -51,6 +70,18 @@ function toggle() {
         <button class="btn btn-danger" @click="toggle">toggle</button>
         <h1 v-if="awesome">Vue is awesome!</h1>
         <h1 v-else>Oh no :`(</h1>
+
+        <!-- part 7: List Rendering -->
+        <form @submit.prevent="addTodo">
+            <input v-model="newTodo">
+            <button>Add Todo</button>
+        </form>
+        <ul>
+            <li v-for="todo in todos" :key="todo.id">
+                {{ todo.text }}
+                <button @click="removeTodo(todo)">X</button>
+            </li>
+        </ul>
     </div>
 </template>
 

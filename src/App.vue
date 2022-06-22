@@ -29,6 +29,12 @@ function onInput(e: Event) {
     const elm = e.target as HTMLInputElement
     newText.value = elm.value
 }
+// part 6: conditional Rendering
+const awesome = ref(true)
+function toggle() {
+    awesome.value = !awesome.value
+}
+
 </script>
 
 <template>
@@ -41,6 +47,10 @@ function onInput(e: Event) {
         <input :value="newText" @input="onInput" placeholder="try to type">
         <input v-model="newText" placeholder="Type here">
         <p>{{ newText }}</p>
+        <!-- part 6: conditional rendering -->
+        <button class="btn btn-danger" @click="toggle">toggle</button>
+        <h1 v-if="awesome">Vue is awesome!</h1>
+        <h1 v-else>Oh no :`(</h1>
     </div>
 </template>
 

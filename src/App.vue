@@ -23,14 +23,25 @@ const count = ref(0)
 function increment() {
     count.value++
 }
+
+const newText = ref('')
+function onInput(e: Event) {
+    const elm = e.target as HTMLInputElement
+    newText.value = elm.value
+}
 </script>
 
 <template>
-    <h1>assignment: {{ text.message }}</h1>
-    <h1>{{ message.split('').reverse().join('') }}</h1>
-    <p>count is: {{ counter.count }}</p>
-    <h1 :class="titleClass">make me red</h1>
-    <button @click="increment">count is: {{ count }}</button>
+    <div class="col">
+        <h1>assignment: {{ text.message }}</h1>
+        <h1>{{ message.split('').reverse().join('') }}</h1>
+        <p>count is: {{ counter.count }}</p>
+        <h1 :class="titleClass">make me red</h1>
+        <button @click="increment" class="btn btn-primary">count is: {{ count }}</button>
+        <input :value="newText" @input="onInput" placeholder="try to type">
+        <input v-model="newText" placeholder="Type here">
+        <p>{{ newText }}</p>
+    </div>
 </template>
 
 <style>

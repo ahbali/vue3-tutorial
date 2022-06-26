@@ -84,6 +84,8 @@ async function fetchData() {
 
 fetchData()
 watch(todoId, fetchData)
+// part 12: Props
+const greeting = ref('Hello from parent')
 
 </script>
 
@@ -157,7 +159,8 @@ watch(todoId, fetchData)
         </div>
     </div>
     <!-- part 11: Components -->
-    <ChildComp />
+    <!-- part 12: Props -->
+    <ChildComp :msg="greeting"/>
 </template>
 
 <style>

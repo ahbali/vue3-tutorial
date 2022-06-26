@@ -2,7 +2,7 @@
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
 // import HelloWorld from './components/HelloWorld.vue'
-import { computed, reactive, Ref, ref } from 'vue';
+import { computed, onMounted, reactive, Ref, ref } from 'vue';
 const counter = reactive({
     count: 0
 })
@@ -60,6 +60,13 @@ function removeTodo(todo: Todo) {
 const filteredTodos = computed(() => {
     return hideCompleted.value ? todos.value.filter(todo => todo.done === false) : todos.value
 })
+// part 9: Lifecycle and Template Refs
+const p = ref<HTMLParagraphElement>()
+onMounted(() => {
+    if (p.value?.textContent) {
+        p.value.textContent = "onMounted value"
+    }
+})
 </script>
 
 <template>
@@ -109,6 +116,12 @@ const filteredTodos = computed(() => {
                     {{ hideCompleted ? 'Show all' : 'Hide completed' }}
                 </button>
             </div>
+        </div>
+        <!-- part 9: Lifecycle and Template Refs -->
+        <div class="row">
+            <p ref="p">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus temporibus pariatur
+                praesentium cumque eligendi culpa. Minus, laudantium distinctio? Perspiciatis aliquid distinctio
+                voluptatibus id, aperiam soluta laboriosam? Molestias, cupiditate qui! Voluptatibus.</p>
         </div>
     </div>
 </template>

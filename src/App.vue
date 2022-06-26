@@ -3,6 +3,7 @@
 // Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
 // import HelloWorld from './components/HelloWorld.vue'
 import { computed, onMounted, reactive, Ref, ref, watch } from 'vue';
+import ChildComp from './components/ChildComp.vue';
 const counter = reactive({
     count: 0
 })
@@ -155,6 +156,8 @@ watch(todoId, fetchData)
             </div>
         </div>
     </div>
+    <!-- part 11: Components -->
+    <ChildComp />
 </template>
 
 <style>

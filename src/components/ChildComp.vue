@@ -1,7 +1,13 @@
 <script setup lang="ts">
-const props = defineProps({
-    msg: String
-})
+// part 12: Props
+const props = defineProps<{
+    msg?: String
+}>()
+// part 13: Emits
+const emit = defineEmits<{
+    (event: 'response', msg: string): void
+}>()
+emit('response', 'hello from child')
 
 </script>
 

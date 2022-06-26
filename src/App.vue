@@ -86,6 +86,8 @@ fetchData()
 watch(todoId, fetchData)
 // part 12: Props
 const greeting = ref('Hello from parent')
+// part 13: Emits
+const childMsg = ref('No child msg yet')
 
 </script>
 
@@ -160,7 +162,9 @@ const greeting = ref('Hello from parent')
     </div>
     <!-- part 11: Components -->
     <!-- part 12: Props -->
-    <ChildComp :msg="greeting"/>
+    <!-- part 13: Emits -->
+    <ChildComp :msg="greeting" @response="(msg) => childMsg = msg"/>
+    <p>{{ childMsg }}</p>
 </template>
 
 <style>

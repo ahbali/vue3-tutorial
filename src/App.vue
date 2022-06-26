@@ -2,7 +2,7 @@
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
 // import HelloWorld from './components/HelloWorld.vue'
-import { computed, onMounted, reactive, Ref, ref } from 'vue';
+import { computed, onMounted, reactive, Ref, ref, watch } from 'vue';
 const counter = reactive({
     count: 0
 })
@@ -67,6 +67,23 @@ onMounted(() => {
         p.value.textContent = "onMounted value"
     }
 })
+// part 10: Watchers
+const count10 = ref(0)
+watch(count10, (newCount) => {
+    console.log(`new count is : ${newCount}`)
+})
+const todoId = ref(1)
+const todoData = ref(null)
+
+async function fetchData() {
+    todoData.value = null
+    const res = await fetch(`https://jsonplaceholder.typicode.com/todos/${todoId.value}`)
+    todoData.value = await res.json()
+}
+
+fetchData()
+watch(todoId, fetchData)
+
 </script>
 
 <template>
@@ -122,6 +139,20 @@ onMounted(() => {
             <p ref="p">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus temporibus pariatur
                 praesentium cumque eligendi culpa. Minus, laudantium distinctio? Perspiciatis aliquid distinctio
                 voluptatibus id, aperiam soluta laboriosam? Molestias, cupiditate qui! Voluptatibus.</p>
+        </div>
+        <!-- part 10: Watchers -->
+        <div class="row">
+            <div class="col-6">
+                <button @click="count10++">increment</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-10">
+                <p>Todo id: {{ todoId }}</p>
+                <button @click="todoId++">Fetch next todo</button>
+                <p v-if="!todoData">Loading...</p>
+                <pre v-else>{{ todoData }}</pre>
+            </div>
         </div>
     </div>
 </template>

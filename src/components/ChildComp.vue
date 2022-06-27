@@ -15,6 +15,8 @@ emit('response', 'hello from child')
     <div class="row">
         <h2>{{ msg ?? 'No props passed yet' }}</h2>
     </div>
+    <!-- part 14: Slots -->
+    <slot>Fallback content</slot>
 </template>
 
 <style scoped>

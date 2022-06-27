@@ -85,9 +85,11 @@ async function fetchData() {
 fetchData()
 watch(todoId, fetchData)
 // part 12: Props
-const greeting = ref('Hello from parent')
+const greeting = ref('Message from parent via Props')
 // part 13: Emits
 const childMsg = ref('No child msg yet')
+// part 14: Slots
+const parentMsg = ref('Message from the parent via Slots')
 
 </script>
 
@@ -163,7 +165,10 @@ const childMsg = ref('No child msg yet')
     <!-- part 11: Components -->
     <!-- part 12: Props -->
     <!-- part 13: Emits -->
-    <ChildComp :msg="greeting" @response="(msg) => childMsg = msg"/>
+    <ChildComp :msg="greeting" @response="(msg) => childMsg = msg">
+        <!-- part 14: Slots -->
+        <h3>{{ parentMsg }}</h3>
+    </ChildComp>
     <p>{{ childMsg }}</p>
 </template>
 
